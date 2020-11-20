@@ -1,8 +1,8 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-/maven-version-rules.xml
-/pom.xml.versionsBackup
+./maven-version-rules.xml
+./pom.xml.versionsBackup
 # Datasource local storage ignored files
 /../../../../../../:\Users\PTokarev\IdeaProjects\SaithyGames\.idea/dataSources/
 /dataSources.local.xml
