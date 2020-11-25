@@ -6,7 +6,7 @@ package games;
 
 public class Slot {
 
-    public static void main() {
+    public static void main(String... args) {
         int firstCounter = 1;
         int secondCounter = 1;
         int thirdCounter = 1;

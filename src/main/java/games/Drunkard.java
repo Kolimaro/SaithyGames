@@ -11,6 +11,9 @@ public class Drunkard {
 //    private static int[] playerCardTails = new int[2];
 //    private static int[] playerCardHeads = new int[2];
 //
+    public static void main(String... args) {
+        System.out.println("Hello world!");
+    }
 //    public static void main() {
 //        System.out.println("Масть 36-й карты - " + getSuit(35));
 //        System.out.println("Размерность 36-й карты - " + getPar(35));
