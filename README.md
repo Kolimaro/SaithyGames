@@ -1,1 +1,2 @@
-https://jitpack.io/#Kolimaro/SaithyGames/master-SNAPSHOT
+[![](https://jitpack.io/v/Kolimaro/SaithyGames.svg)](https://jitpack.io/#Kolimaro/SaithyGames)
+[![Build Status](https://travis-ci.org/Kolimaro/SaithyGames.svg?branch=master)](https://travis-ci.org/Kolimaro/SaithyGames)
