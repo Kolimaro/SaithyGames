@@ -1,5 +1,5 @@
 /.idea/*
-maven-version-rules.xml
-pom.xml.versionsBackup
+/pom.xml.versionsBackup
 /out/*
 /target/*
+/SaithyGames.iml
