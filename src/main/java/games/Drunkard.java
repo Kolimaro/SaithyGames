@@ -125,9 +125,9 @@ public class Drunkard {
 
     private static void dealCards(int[] cardDeck) {
         System.arraycopy(cardDeck, 0, playersCards[0], 0, cardDeck.length / 2);
-        playerCardHeads[0] = (cardDeck.length / 2);
+        playerCardHeads[0] = cardDeck.length / 2;
         System.arraycopy(cardDeck, cardDeck.length / 2, playersCards[1], 0, cardDeck.length / 2);
-        playerCardHeads[1] = (cardDeck.length / 2);
+        playerCardHeads[1] = cardDeck.length / 2;
     }
 
     private static void grabCards(int playerIndex, int card1, int card2) {

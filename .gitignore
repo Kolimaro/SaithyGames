@@ -1,0 +1,5 @@
+/.idea/*
+maven-version-rules.xml
+pom.xml.versionsBackup
+/out/*
+/target/*
