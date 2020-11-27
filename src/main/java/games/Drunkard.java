@@ -8,7 +8,7 @@ import org.apache.commons.math3.util.MathArrays;
 
 public class Drunkard {
     private static final int PARS_TOTAL_COUNT = Par.values().length;
-    private static final int CARDS_TOTAL_COUNT = PARS_TOTAL_COUNT * Suit.values().length;
+    private static final int CARDS_TOTAL_COUNT = PARS_TOTAL_COUNT * Suit.values().length + 1;
     private static final int[][] playersCards = new int[2][CARDS_TOTAL_COUNT];
     private static final int[] playerCardTails = new int[2];
     private static final int[] playerCardHeads = new int[2];
@@ -16,7 +16,7 @@ public class Drunkard {
     public static void main(String... args) {
         boolean isFirstWinner = false;
         int iteration = 0;
-        int[] cardDeck = new int[CARDS_TOTAL_COUNT];
+        int[] cardDeck = new int[CARDS_TOTAL_COUNT - 1];
         for (int i = 0; i < cardDeck.length; i++) {
             cardDeck[i] = i;
         }
