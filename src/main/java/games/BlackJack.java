@@ -1,5 +1,8 @@
 package games;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 
 /**
@@ -7,6 +10,7 @@ import java.io.IOException;
  */
 
 public class BlackJack {
+    private static final Logger log = LoggerFactory.getLogger(BlackJack.class);
     private static final int[] playersMoney = {100, 100};
     private static final int MAX_VALUE = 21;
     private static final int MAX_CARDS_COUNT = 8;
@@ -20,13 +24,13 @@ public class BlackJack {
         do {
             initRound();
             for (int i = 0; i < 2; i++) {
-                System.out.println("Вам выпала карта " + CardUtils.toString(addCardToPlayer(0)));
+                log.info("Вам выпала карта {}", CardUtils.toString(addCardToPlayer(0)));
             }
             boolean isContinuing = true;
             while (isContinuing) {
                 if (sum(0) < MAX_VALUE) {
                     if (Choice.confirm("Хотите взять еще?")) {
-                        System.out.println("Вам выпала карта " + CardUtils.toString(addCardToPlayer(0)));
+                        log.info("Вам выпала карта {}", CardUtils.toString(addCardToPlayer(0)));
                     } else {
                         isContinuing = false;
                     }
@@ -36,38 +40,38 @@ public class BlackJack {
             }
 
             for (int i = 0; i < 2; i++) {
-                System.out.println("Компьютеру выпала карта " + CardUtils.toString(addCardToPlayer(1)));
+                log.info("Компьютеру выпала карта {}", CardUtils.toString(addCardToPlayer(1)));
             }
             while (sum(1) < 17) {
-                System.out.println("Компьютер решил взят еще и ему выпала карта " + CardUtils.toString(addCardToPlayer(1)));
+                log.info("Компьютер решил взять еще и ему выпала карта {}", CardUtils.toString(addCardToPlayer(1)));
             }
 
-            System.out.println("Сумма Ваших очков - " + getFinalSum(0) + ", компьютера - " + getFinalSum(1));
+            log.info("Сумма Ваших очков - {}, компьютера - {}", getFinalSum(0), getFinalSum(1));
             if (getFinalSum(0) > getFinalSum(1)) {
-                System.out.println("Вы выиграли раунд! Получаете 10$");
+                log.info("Вы выиграли раунд! Получаете 10$");
                 playersMoney[0] += 10;
                 playersMoney[1] -= 10;
             } else if (getFinalSum(0) < getFinalSum(1)) {
-                System.out.println("Вы проиграли раунд. Теряете 10$");
+                log.info("Вы проиграли раунд. Теряете 10$");
                 playersMoney[0] -= 10;
                 playersMoney[1] += 10;
             } else {
-                System.out.println("Ничья!");
+                log.info("Ничья!");
             }
 
 
         } while (playersMoney[0] > 0 && playersMoney[1] > 0);
 
         if (playersMoney[0] > 0) {
-            System.out.println("Вы выиграли! Поздравляем!");
+            log.info("Вы выиграли! Поздравляем!");
         } else {
-            System.out.println("Вы проиграли. Соболезнуем...");
+            log.info("Вы проиграли. Соболезнуем...");
         }
 
     }
 
     private static void initRound() {
-        System.out.println("\nУ Вас " + playersMoney[0] + "$, у компьютера - " + playersMoney[1] + "$. Начинаем новый раунд!");
+        log.info("\nУ Вас {}$, у компьютера - {}$. Начинаем новый раунд!", playersMoney[0], playersMoney[1]);
         cardDeck = CardUtils.getShuffledCardDeck();
         playersCards = new int[2][MAX_CARDS_COUNT];
         playersCursors = new int[]{0, 0};

@@ -1,10 +1,14 @@
 package games;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Pavel Tokarev, 21.11.2020
  */
 
 public class Drunkard {
+    private static final Logger log = LoggerFactory.getLogger(Drunkard.class);
     private static final int CARDS_TOTAL_COUNT = CardUtils.getCardsTotalCount() + 1;
     private static final int[][] playersCards = new int[2][CARDS_TOTAL_COUNT];
     private static final int[] playerCardTails = new int[2];
@@ -22,42 +26,41 @@ public class Drunkard {
             playerCardTails[0] = incrementIndex(playerCardTails[0]);
             int card2 = playersCards[1][playerCardTails[1]];
             playerCardTails[1] = incrementIndex(playerCardTails[1]);
-            System.out.println("Итерация №" + iteration + " Игрок №1 карта: " + CardUtils.toString(card1)
-                                + "; игрок №2 карта: " + CardUtils.toString(card2));
+            log.info("Итерация №{} Игрок №1 карта: {}; игрок №2 карта: {}", iteration, CardUtils.toString(card1), CardUtils.toString(card2));
             if (CardUtils.getPar(card1).ordinal() == CardUtils.getPar(card2).ordinal()) {
                 playerCardHeads[0] = incrementIndex(playerCardHeads[0]);
                 playersCards[0][playerCardHeads[0]] = card1;
                 playerCardHeads[1] = incrementIndex(playerCardHeads[1]);
                 playersCards[1][playerCardHeads[1]] = card2;
-                System.out.println("Спор - каждый остается при своих!");
+                log.info("Спор - каждый остается при своих!");
             } else if (CardUtils.getPar(card1).ordinal() > CardUtils.getPar(card2).ordinal()) {
                 if (CardUtils.getPar(card1).equals(CardUtils.Par.ACE) && CardUtils.getPar(card2).equals(CardUtils.Par.SIX)) {
                     grabCards(1, card1, card2);
-                    System.out.println("Выиграл игрок 2!");
+                    log.info("Выиграл игрок 2!");
                     isFirstWinner = false;
                 } else {
                     grabCards(0, card1, card2);
-                    System.out.println("Выиграл игрок 1!");
+                    log.info("Выиграл игрок 1!");
                     isFirstWinner = true;
                 }
             } else if (CardUtils.getPar(card1).equals(CardUtils.Par.SIX) && CardUtils.getPar(card2).equals(CardUtils.Par.ACE)) {
                 grabCards(0, card1, card2);
-                System.out.println("Выиграл игрок 1!");
+                log.info("Выиграл игрок 1!");
                 isFirstWinner = true;
             } else {
                 grabCards(1, card1, card2);
-                System.out.println("Выиграл игрок 2!");
+                log.info("Выиграл игрок 2!");
                 isFirstWinner = false;
             }
 
-            System.out.println("У игрока №1 " + playerCardsCount(0) + " карт, у игрока №2 " + playerCardsCount(1) + " карт");
+            log.info("У игрока №1 {} карт, у игрока №2 {} карт", playerCardsCount(0), playerCardsCount(1));
 
         } while (!playerCardsIsEmpty(0) && !playerCardsIsEmpty(1));
 
         if (isFirstWinner) {
-            System.out.println("Выиграл первый игрок! Количество итераций: " + iteration);
+            log.info("Выиграл первый игрок! Количество итераций: {}", iteration);
         } else {
-            System.out.println("Выиграл второй игрок! Количество итераций: " + iteration);
+            log.info("Выиграл второй игрок! Количество итераций: {}", iteration);
         }
     }
 

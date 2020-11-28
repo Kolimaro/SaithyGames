@@ -1,10 +1,14 @@
 package games;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Pavel Tokarev, 20.11.2020
  */
 
 public class Slot {
+    private static final Logger log = LoggerFactory.getLogger(Slot.class);
 
     public static void main(String... args) {
         int firstCounter = 1;
@@ -18,16 +22,16 @@ public class Slot {
             secondCounter = (secondCounter + (int) Math.round(Math.random() * 100)) % 7;
             thirdCounter = (thirdCounter + (int) Math.round(Math.random() * 100)) % 7;
 
-            System.out.println("У Вас " + balance + "$, ставка - " + bet);
-            System.out.println("Крутим барабаны! Розыгрыш дал следующие результаты:");
+            log.info("У Вас {}$, ставка - {}", balance, bet);
+            log.info("Крутим барабаны! Розыгрыш дал следующие результаты:");
             balance -= bet;
-            System.out.println("Первый барабан - " + firstCounter + ", второй - " + secondCounter + ", третий - " + thirdCounter);
+            log.info("Первый барабан - {}, второй - {}, третий - {}", firstCounter, secondCounter, thirdCounter);
 
             if (firstCounter == secondCounter && firstCounter == thirdCounter) {
                 balance += 1000;
-                System.out.println("Поздравляем! Вы выиграли 1000$ Ваш капитал теперь составляет: " + balance + "$\n");
+                log.info("Поздравляем! Вы выиграли 1000$ Ваш капитал теперь составляет: {}$\n", balance);
             } else {
-                System.out.println("Проигрыш " + bet + "$, Ваш капитал теперь составляет: " + balance + "$\n");
+                log.info("Проигрыш {}$, Ваш капитал теперь составляет: {}$\n", bet, balance);
             }
         } while (balance >= bet);
     }
